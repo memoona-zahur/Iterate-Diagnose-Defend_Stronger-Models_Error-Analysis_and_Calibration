@@ -86,5 +86,5 @@ The notebook is complete and passes all 72 verification checks. The key lesson
 — that a fancier algorithm is not automatically a better model — is clearly
 demonstrated: linear regression (RMSE=7.06) beats random forest (RMSE=7.40) on
 this dataset. The error analysis identifies concrete patterns in worst predictions.
-The calibration curve shows reasonable calibration with some deviation at extremes.
+The calibration curve shows reasonable calibration, with the logistic regression well-calibrated at the extremes and mildly under-confident in the mid-range probabilities.
 The evaluation report provides standalone prose suitable for Friday's defense.

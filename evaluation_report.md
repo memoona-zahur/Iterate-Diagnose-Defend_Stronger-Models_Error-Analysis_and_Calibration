@@ -63,7 +63,7 @@ For classification, the misclassified rows tend to be students near the distinct
 
 ## One Calibration Finding
 
-The random forest classifier's calibration curve shows that its predicted probabilities roughly correspond to actual success rates. The model is reasonably well-calibrated overall, though it shows some deviation at extreme probabilities — at low confidence (predicted ≈ 0.08), the actual positive rate is 0%, and at moderate confidence (predicted ≈ 0.30), the actual positive rate is 50%. This means the model's stated confidence can be taken at face value for high-probability predictions but should be treated with caution for borderline cases.
+The logistic regression classifier's calibration curve shows that its predicted probabilities roughly correspond to actual success rates. The 5-bin calibration table shows the model is well-calibrated at the extremes — at low confidence (predicted ≈ 0.10), the actual positive rate is 6%, and at high confidence (predicted ≈ 0.92), it is 93%. There is mild under-confidence in the mid-range probabilities: where the model predicts ≈ 0.31 and ≈ 0.49, the actual positive rates are ≈ 0.42 and ≈ 0.63. This means the model's stated confidence can be taken at face value for clear-cut, high- or low-probability predictions, but borderline mid-range probabilities should be treated with slight caution.
 
 ## What We Could NOT Do
 

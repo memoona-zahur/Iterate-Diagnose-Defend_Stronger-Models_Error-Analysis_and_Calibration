@@ -27,7 +27,7 @@ The five rows the linear regression model gets most wrong share a pattern: they 
 
 ### 3. Is the model's confidence trustworthy?
 
-The random forest classifier's calibration curve shows reasonable calibration — its predicted probabilities roughly correspond to actual success rates. However, there's some deviation at extreme probabilities, meaning the model's stated confidence should be treated with caution for borderline cases.
+The logistic regression classifier's calibration curve shows reasonable calibration — its predicted probabilities roughly correspond to actual success rates. It is well-calibrated at the extremes but mildly under-confident in the mid-range probabilities, so borderline predictions should be treated with slight caution.
 
 ## Why this matters
 
