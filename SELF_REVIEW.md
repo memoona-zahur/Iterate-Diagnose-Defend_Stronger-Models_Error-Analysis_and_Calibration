@@ -15,7 +15,7 @@ delivered artifacts. Verification source: `test_pipeline.py`
 | 5 | Feature importances compared to linear regression coefficients | Notebook Section 6 | ✓ (study_hours dominant in both) |
 | 6 | Random forest classification with accuracy/precision/recall/F1 | Notebook Section 6 | ✓ (acc=0.73, F1=0.80) |
 | 7 | Regression comparison table (all 5 models) | Notebook Section 7 | ✓ (sorted by RMSE) |
-| 8 | Classification comparison table (all 3 models) | Notebook Section 7 | ✓ (all 4 metrics) |
+| 8 | Classification comparison table (all 4 models) | Notebook Section 7 | ✓ (all 4 metrics) |
 | 9 | Written defense of winner with specific numbers | Notebook Section 7 markdown | ✓ (linear regression wins regression, logistic wins classification) |
 | 10 | Error analysis: 5 worst regression predictions with pattern | Notebook Section 8 | ✓ (unusual feature combinations) |
 | 11 | Error analysis: misclassified rows with pattern | Notebook Section 8 | ✓ (near-boundary students) |
@@ -38,7 +38,7 @@ delivered artifacts. Verification source: `test_pipeline.py`
 | Feature importances extracted and compared | ✓ | study_hours dominant in both forest and linear |
 | Random forest classification (n_estimators=200) | ✓ | acc=0.73, F1=0.80 |
 | Regression comparison table (all models) | ✓ | 5 models, sorted by RMSE |
-| Classification comparison table (all models) | ✓ | 3 models, all 4 metrics |
+| Classification comparison table (all models) | ✓ | 4 models, all 4 metrics |
 | Winner defended with specific numbers | ✓ | Linear RMSE=7.06 < Forest RMSE=7.40 |
 | Error analysis: regression residuals | ✓ | Top 5 worst, pattern identified |
 | Error analysis: classification misclassified | ✓ | Pattern near decision boundary |

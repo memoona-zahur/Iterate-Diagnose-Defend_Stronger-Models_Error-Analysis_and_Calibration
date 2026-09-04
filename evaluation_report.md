@@ -39,6 +39,7 @@ We trained and evaluated five regression models and three classification models:
 | Model | Accuracy | Precision | Recall | F1 |
 |-------|----------|-----------|--------|-----|
 | Baseline (DummyClassifier) | 0.6500 | 0.6500 | 1.0000 | 0.7879 |
+| Decision Tree | 0.7333 | 0.8194 | 0.7564 | 0.7867 |
 | Logistic Regression | **0.7667** | **0.8125** | **0.8333** | **0.8228** |
 | Random Forest (200 trees) | 0.7250 | 0.7711 | 0.8205 | 0.7950 |
 

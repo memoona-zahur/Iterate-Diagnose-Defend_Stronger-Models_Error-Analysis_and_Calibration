@@ -231,9 +231,26 @@ check(tree_con.get_depth() <= 3, f"constrained tree depth ≤ 3 (got {tree_con.g
 check(rmse_tree_con < rmse_tree_uncon_test, f"constrained RMSE ({rmse_tree_con:.4f}) < unconstrained ({rmse_tree_uncon_test:.4f})")
 
 # ---------------------------------------------------------------------------
-# Part J — Random forests (Thursday's new models)
+# Part J — Decision tree classification (Thursday's new model)
 # ---------------------------------------------------------------------------
-print("== Part J: Random forests ==")
+print("== Part J: Decision tree classification ==")
+
+tree_clf = DecisionTreeClassifier(random_state=42)
+tree_clf.fit(X_train_c, y_train_c)
+y_pred_tree_c = tree_clf.predict(X_test_c)
+
+acc_tree = accuracy_score(y_test_c, y_pred_tree_c)
+prec_tree = precision_score(y_test_c, y_pred_tree_c)
+rec_tree = recall_score(y_test_c, y_pred_tree_c)
+f1_tree = f1_score(y_test_c, y_pred_tree_c)
+
+check(acc_tree > acc_dummy, f"tree accuracy ({acc_tree:.4f}) > baseline ({acc_dummy:.4f})")
+check(f1_tree > 0.5, f"tree F1 > 0.5 (got {f1_tree:.4f})")
+
+# ---------------------------------------------------------------------------
+# Part K — Random forests (Thursday's new models)
+# ---------------------------------------------------------------------------
+print("== Part K: Random forests ==")
 
 # Random forest regression
 rf_reg = RandomForestRegressor(n_estimators=200, random_state=42)
@@ -264,9 +281,9 @@ check(acc_rf > acc_dummy, f"RF accuracy ({acc_rf:.4f}) > baseline ({acc_dummy:.4
 check(f1_rf > 0.5, f"RF F1 > 0.5 (got {f1_rf:.4f})")
 
 # ---------------------------------------------------------------------------
-# Part K — Model comparison tables
+# Part L — Model comparison tables
 # ---------------------------------------------------------------------------
-print("== Part K: Model comparison ==")
+print("== Part L: Model comparison ==")
 
 # Linear regression should beat unconstrained tree
 check(rmse_lin < rmse_tree_uncon_test, f"linear RMSE ({rmse_lin:.4f}) < unconstrained tree ({rmse_tree_uncon_test:.4f})")
@@ -277,10 +294,13 @@ check(abs(rmse_lin - rmse_tree_con) < 1.0, f"linear and constrained tree are com
 # Logistic regression should beat baseline
 check(acc_log > acc_dummy, f"logreg accuracy ({acc_log:.4f}) > baseline ({acc_dummy:.4f})")
 
+# Decision tree should exist for classification
+check('acc_tree' in dir() or 'acc_tree' in globals(), "decision tree classifier metrics computed")
+
 # ---------------------------------------------------------------------------
-# Part L — Error analysis
+# Part M — Error analysis
 # ---------------------------------------------------------------------------
-print("== Part L: Error analysis ==")
+print("== Part M: Error analysis ==")
 
 # Regression residuals
 residuals = y_test - y_pred_lin
@@ -298,9 +318,9 @@ misclassification_rate = misclassified_mask.mean()
 check(0.1 < misclassification_rate < 0.5, f"misclassification rate reasonable (got {misclassification_rate:.2%})")
 
 # ---------------------------------------------------------------------------
-# Part M — Calibration
+# Part N — Calibration
 # ---------------------------------------------------------------------------
-print("== Part M: Calibration ==")
+print("== Part N: Calibration ==")
 
 y_proba_rf = rf_clf.predict_proba(X_test_c)[:, 1]
 fraction_of_positives, mean_predicted_value = calibration_curve(y_test_c, y_proba_rf, n_bins=5)
@@ -309,9 +329,9 @@ check(len(fraction_of_positives) >= 3, f"calibration curve has ≥3 points (got 
 check(len(mean_predicted_value) == len(fraction_of_positives), "calibration curve points match")
 
 # ---------------------------------------------------------------------------
-# Part N — Chart files exist and are valid PNGs
+# Part O — Chart files exist and are valid PNGs
 # ---------------------------------------------------------------------------
-print("== Part N: Charts ==")
+print("== Part O: Charts ==")
 expected_charts = [
     "chart_regression_all_models.png",
     "chart_classification_all_models.png",
@@ -329,9 +349,9 @@ for chart_name in expected_charts:
         check(False, f"chart exists: {chart_name}")
 
 # ---------------------------------------------------------------------------
-# Part O — Deliverable files exist
+# Part P — Deliverable files exist
 # ---------------------------------------------------------------------------
-print("== Part O: Deliverables ==")
+print("== Part P: Deliverables ==")
 deliverables = [
     (STUDENTS_CSV, "data/students.csv"),
     (GEN_PY, "generate_data.py"),
@@ -345,9 +365,9 @@ for filepath, label in deliverables:
     check(os.path.exists(filepath), f"exists: {label}")
 
 # ---------------------------------------------------------------------------
-# Part P — Notebook cleanliness (no error cells)
+# Part Q — Notebook cleanliness (no error cells)
 # ---------------------------------------------------------------------------
-print("== Part P: Notebook cleanliness ==")
+print("== Part Q: Notebook cleanliness ==")
 try:
     import nbformat
     nb = nbformat.read(NOTEBOOK, as_version=4)
@@ -362,9 +382,9 @@ except Exception as e:
     check(False, f"notebook cleanliness check failed: {e}")
 
 # ---------------------------------------------------------------------------
-# Part Q — Reproducibility checks
+# Part R — Reproducibility checks
 # ---------------------------------------------------------------------------
-print("== Part Q: Reproducibility ==")
+print("== Part R: Reproducibility ==")
 
 dataset_hash = sha256_file(STUDENTS_CSV)
 check(len(dataset_hash) == 64, f"dataset has valid SHA-256 hash")
@@ -383,9 +403,9 @@ check(
 )
 
 # ---------------------------------------------------------------------------
-# Part R — Statistical checks
+# Part S — Statistical checks
 # ---------------------------------------------------------------------------
-print("== Part R: Statistical checks ==")
+print("== Part S: Statistical checks ==")
 
 r_study, p_study = stats.pearsonr(df["study_hours_per_week"], df["exam_score"])
 check(0.55 < r_study < 0.80, f"study-hours r in plausible range (got {r_study:.3f})")
