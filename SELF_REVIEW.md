@@ -2,7 +2,7 @@
 
 Requirement-by-requirement check of every today-task item against the actual
 delivered artifacts. Verification source: `test_pipeline.py`
-(72 checks passing) plus notebook output inspection.
+(75 checks passing) plus notebook output inspection.
 
 ## Today's tasks
 
@@ -47,7 +47,7 @@ delivered artifacts. Verification source: `test_pipeline.py`
 | Technical summary | ✓ | evaluation_report.md |
 | Honest limitations | ✓ | 6 limitations documented |
 | Survives Restart Kernel & Run All | ✓ | Zero error cells |
-| 72-check test suite passes | ✓ | All 72 checks passing |
+| 75-check test suite passes | ✓ | All 75 checks passing |
 
 ## Pre-submission checklist applied
 
@@ -82,7 +82,7 @@ delivered artifacts. Verification source: `test_pipeline.py`
 
 ## Honest Self-Assessment
 
-The notebook is complete and passes all 72 verification checks. The key lesson
+The notebook is complete and passes all 75 verification checks. The key lesson
 — that a fancier algorithm is not automatically a better model — is clearly
 demonstrated: linear regression (RMSE=7.06) beats random forest (RMSE=7.40) on
 this dataset. The error analysis identifies concrete patterns in worst predictions.

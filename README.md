@@ -23,7 +23,7 @@ Week 06 · Day 4. A complete ML pipeline extending Wednesday's work with decisio
 | `ml_pipeline.ipynb` | Full pipeline: data → baselines → models → comparison → error analysis → calibration → self-audit |
 | `data/students.csv` | 600 × 6 students dataset |
 | `generate_data.py` | Dataset generator (exact assignment spec, `seed=21`) |
-| `test_pipeline.py` | 72-check automated verification suite |
+| `test_pipeline.py` | 75-check automated verification suite |
 | `charts/` | All saved PNG figures from the notebook |
 | `evaluation_report.md` | Standalone prose for Friday's defense |
 | `SELF_REVIEW.md` | Requirement-by-requirement verification |
@@ -42,7 +42,7 @@ pip install -r requirements.txt
 # Regenerate dataset (spec-exact, seed=21)
 python3 generate_data.py
 
-# Run the verification suite (72 checks)
+# Run the verification suite (75 checks)
 python3 test_pipeline.py
 
 # Open the notebook

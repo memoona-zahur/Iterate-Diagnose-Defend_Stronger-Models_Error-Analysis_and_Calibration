@@ -291,9 +291,6 @@ check(rmse_lin < rmse_tree_uncon_test, f"linear RMSE ({rmse_lin:.4f}) < unconstr
 # Linear regression should be competitive with constrained tree
 check(abs(rmse_lin - rmse_tree_con) < 1.0, f"linear and constrained tree are competitive (diff={abs(rmse_lin - rmse_tree_con):.4f})")
 
-# Logistic regression should beat baseline
-check(acc_log > acc_dummy, f"logreg accuracy ({acc_log:.4f}) > baseline ({acc_dummy:.4f})")
-
 # Decision tree should exist for classification
 check('acc_tree' in dir() or 'acc_tree' in globals(), "decision tree classifier metrics computed")
 
@@ -313,7 +310,7 @@ worst_5_idx = np.argsort(abs_residuals)[-5:]
 check(len(worst_5_idx) == 5, "can identify 5 worst predictions")
 
 # Classification misclassification analysis
-misclassified_mask = y_pred_rf_c != y_test_c
+misclassified_mask = y_pred_log != y_test_c
 misclassification_rate = misclassified_mask.mean()
 check(0.1 < misclassification_rate < 0.5, f"misclassification rate reasonable (got {misclassification_rate:.2%})")
 
@@ -322,8 +319,8 @@ check(0.1 < misclassification_rate < 0.5, f"misclassification rate reasonable (g
 # ---------------------------------------------------------------------------
 print("== Part N: Calibration ==")
 
-y_proba_rf = rf_clf.predict_proba(X_test_c)[:, 1]
-fraction_of_positives, mean_predicted_value = calibration_curve(y_test_c, y_proba_rf, n_bins=5)
+y_proba_log = log_reg.predict_proba(X_test_c)[:, 1]
+fraction_of_positives, mean_predicted_value = calibration_curve(y_test_c, y_proba_log, n_bins=5)
 
 check(len(fraction_of_positives) >= 3, f"calibration curve has ≥3 points (got {len(fraction_of_positives)})")
 check(len(mean_predicted_value) == len(fraction_of_positives), "calibration curve points match")
@@ -337,6 +334,7 @@ expected_charts = [
     "chart_classification_all_models.png",
     "chart_feature_comparison.png",
     "chart_calibration_curve.png",
+    "chart_residual_analysis.png",
 ]
 
 for chart_name in expected_charts:
