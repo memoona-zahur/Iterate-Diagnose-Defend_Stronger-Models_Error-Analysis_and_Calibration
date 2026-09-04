@@ -22,7 +22,7 @@ Every real model must beat these baselines to be worth using.
 
 ## Models Compared
 
-We trained and evaluated five regression models and three classification models:
+We trained and evaluated five regression models and four classification models:
 
 ### Regression Models
 
